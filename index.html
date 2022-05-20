@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html style="height:100%;">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sketchfab Viewer API example</title>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Sketchfab model</title>
 
     <!-- Insert this script -->
     <script
-      type="text/javascript"
-      src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"
+            type="text/javascript"
+            src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"
     ></script>
-  </head>
+</head>
 
-  <body style="width: 100%;height:100%;">
-    <div style="width: 100%;">
-      <iframe
-        style="display:block;width: 1000px; height: 500px; margin: 200px auto auto"
-        src=""
-        id="api-frame"
-        allow="autoplay; fullscreen; xr-spatial-tracking"
-        allowfullscreen
-        xr-spatial-tracking
-        execution-while-out-of-viewport
-        execution-while-not-rendered
-        web-share
-        mozallowfullscreen="true"
-        webkitallowfullscreen="true"
-      ></iframe>
-    </div>
-    <!-- Initialize the viewer -->
-    <script type="text/javascript">
-      var iframe = document.getElementById("api-frame");
-      var uid = "7w7pAfrCfjovwykkEeRFLGw5SXS";
+<body style="width: 100%;height:100%;">
+<div style="width: 100%;">
+    <iframe
+            style="display:block;width: 1000px; height: 500px; margin: 200px auto auto"
+            src=""
+            id="api-frame"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            allowfullscreen
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+    ></iframe>
+</div>
 
-      // By default, the latest version of the viewer API will be used.
-      var client = new Sketchfab(iframe);
+<!-- Initialize the viewer -->
+<script type="text/javascript">
+  const iframe = document.getElementById("api-frame");
+  const uid = "aa4b2e325d354251bcf9bba00d1a51f3";
 
-      // Alternatively, you can request a specific version.
-      // var client = new Sketchfab( '1.12.0', iframe );
+  // By default, the latest version of the viewer API will be used.
+  const client = new Sketchfab(iframe);
 
-      client.init(uid, {
-        success: function onSuccess(api) {
-          api.start();
-          api.addEventListener("viewerready", function () {
-            // API is ready to use
-            // Insert your code here
-            console.log("Viewer is ready");
-          });
-        },
-        error: function onError() {
-          console.log("Viewer error");
-        },
+  // Alternatively, you can request a specific version.
+  // var client = new Sketchfab( '1.12.0', iframe );
+
+  client.init(uid, {
+    success: function onSuccess(api) {
+      api.start();
+      api.addEventListener("viewerready", function () {
+        // API is ready to use
+        // Insert your code here
+        console.log("Viewer is ready");
       });
-    </script>
-  </body>
+    },
+    error: function onError() {
+      console.log("Viewer error");
+    },
+  });
+</script>
+</body>
 </html>
