@@ -18,6 +18,7 @@
             style="display:block;width: 1000px; height: 500px; margin: 200px auto auto"
             src=""
             id="api-frame"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
             allow="autoplay; fullscreen; xr-spatial-tracking"
             allowfullscreen
             xr-spatial-tracking
@@ -31,6 +32,7 @@
 
 <!-- Initialize the viewer -->
 <script type="text/javascript">
+  // Examples: https://sketchfab.com/developers/viewer/examples
   const iframe = document.getElementById("api-frame");
   const uid = "aa4b2e325d354251bcf9bba00d1a51f3";
 
@@ -38,7 +40,7 @@
   const client = new Sketchfab(iframe);
 
   // Alternatively, you can request a specific version.
-  // var client = new Sketchfab( '1.12.0', iframe );
+  // const client = new Sketchfab( '1.12.0', iframe );
 
   client.init(uid, {
     success: function onSuccess(api) {
@@ -46,7 +48,29 @@
       api.addEventListener("viewerready", function () {
         // API is ready to use
         // Insert your code here
-        console.log("Viewer is ready");
+        console.log("Model is loaded");
+        api.createAnnotation(
+          [-0.16, -3.86, 0.82],
+          [0.12, -3.57, -0.51],
+          [0, 0, 0],
+          [0, 0, 0],
+          'mytitle2',
+          'mytext2',
+          function (err, index) {
+            if (!err) {
+              console.log('Created new annotatation', index + 1);
+            } else {
+              console.error(err)
+            }
+          }
+        );
+        api.getAnnotationList(function (err, annotations) {
+          if (!err) {
+            window.console.log(annotations);
+          } else {
+            console.error(err)
+          }
+        });
       });
     },
     error: function onError() {
